@@ -12,4 +12,9 @@ class Pessoa extends Model
     ];
 
     protected $table = 'pessoas';
+
+    public function telefone()
+    {
+        return $this->hasMany(Telefone::class, 'pessoa_id');
+    }
 }
