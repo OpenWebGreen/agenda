@@ -9,7 +9,7 @@ class Telefone extends Model
     protected $fillable = [
         'id',
         'ddd',
-        'fone',
+        'telefone',
         'pessoa_id'
     ];
 
