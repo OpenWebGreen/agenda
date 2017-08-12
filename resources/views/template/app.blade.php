@@ -26,8 +26,8 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Contatos <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Novo</a></li>
-                        <li><a href="#">Listar</a></li>
+                        <li><a href="{{ url('pessoas/novo') }}">Novo</a></li>
+                        <li><a href="{{ url('pessoas') }}">Listar</a></li>
                     </ul>
                 </li>
             </ul>
