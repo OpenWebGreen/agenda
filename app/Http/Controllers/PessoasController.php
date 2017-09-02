@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Pessoa;
+use App\Telefone;
 use Illuminate\Http\Request;
 
 class PessoasController extends Controller
 {
+
+    private $telefones_controller;
+
+    public function __construct(TelefonesController $telefones_controller)
+    {
+        $this->telefones_controller = $telefones_controller;
+    }
 
     public function index()
     {
@@ -23,7 +31,15 @@ class PessoasController extends Controller
 
     public function store(Request $request)
     {
-        Pessoa::create($request->all());
+        $pessoa = Pessoa::create($request->all());
+        if ($request->ddd && $request->telefone) {
+            $telefone = new Telefone();
+            $telefone->ddd = $request->ddd;
+            $telefone->telefone = $request->telefone;
+            $telefone->pessoa_id = $pessoa->id;
+            $this->telefones_controller->store($telefone);
+        }
+
         return redirect("/pessoas")->with("message", "Pessoa criada com sucesso!");
     }
 }
