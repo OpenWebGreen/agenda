@@ -10,10 +10,12 @@ class PessoasController extends Controller
 {
 
     private $telefones_controller;
+    private $pessoa;
 
     public function __construct(TelefonesController $telefones_controller)
     {
         $this->telefones_controller = $telefones_controller;
+        $this->pessoa = new Pessoa();
     }
 
     public function index()
@@ -42,4 +44,25 @@ class PessoasController extends Controller
 
         return redirect("/pessoas")->with("message", "Pessoa criada com sucesso!");
     }
+
+    public function editarView($id)
+    {
+        return view('pessoas.edit', [
+           'pessoa' => $this->getPessoa($id)
+        ]);
+    }
+
+    public function update(Request $request)
+    {
+        $pessoa = $this->getPessoa($request->id);
+        $pessoa->update($request->all());
+
+        return redirect('/pessoas');
+    }
+
+    protected function getPessoa($id)
+    {
+        return $this->pessoa->find($id);
+    }
+
 }
