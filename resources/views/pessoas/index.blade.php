@@ -4,6 +4,7 @@
     <style>
         .btn-action {
             padding: 5px;
+            margin-left: 5px;
             float: right;
         }
     </style>
@@ -13,6 +14,9 @@
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         {{ $pessoa->nome }}
+                        <a href="{{ url("/pessoas/$pessoa->id/excluir") }}" class="btn btn-xs btn-danger btn-action">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
                         <a href="{{ url("/pessoas/$pessoa->id/editar") }}" class="btn btn-xs btn-primary btn-action">
                             <i class="glyphicon glyphicon-pencil"></i>
                         </a>

@@ -45,6 +45,20 @@ class PessoasController extends Controller
         return redirect("/pessoas")->with("message", "Pessoa criada com sucesso!");
     }
 
+    public function excluirView($id)
+    {
+        return view('pessoas.delete', [
+            'pessoa' => $this->getPessoa($id)
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        $this->getPessoa($id)->delete();
+
+        return redirect(url('pessoas'))->with('success', 'Excluído!');
+    }
+
     public function editarView($id)
     {
         return view('pessoas.edit', [
