@@ -17,4 +17,9 @@ class Pessoa extends Model
     {
         return $this->hasMany(Telefone::class, 'pessoa_id');
     }
+
+    public static function indexLetra($letra)
+    {
+        return static::where('nome', 'LIKE', $letra . '%')->get();
+    }
 }
