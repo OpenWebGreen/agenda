@@ -21,5 +21,6 @@ Route::group(["prefix" => "pessoas"], function () {
     Route::get("/{id}/destroy", "PessoasController@destroy");
     Route::post("/store", "PessoasController@store");
     Route::post("/update", "PessoasController@update");
+    Route::post("/busca", "PessoasController@busca");
     Route::get("/{letra}", "PessoasController@index");
 });

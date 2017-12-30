@@ -19,8 +19,17 @@
       @endforeach
     </div>
 
-    <div class="col-sm-12">
-      <h1>Critério: {{ $criterio }}</h1>
+    <div class="row">
+      <h1 class="col-sm-8">Critério: {{ $criterio }}</h1>
+        <form action="{{ url('/pessoas/busca') }}" method="post">
+          <div style="margin-top: 70px" class="col-sm-4 input-group">
+            {{ csrf_field() }}
+            <input type="text" class="form-control" name="criterio" placeholder="Buscar...">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="submit">ok</button>
+            </span>
+          </div>
+        </form>
     </div>
 
     @foreach($pessoas as $pessoa)

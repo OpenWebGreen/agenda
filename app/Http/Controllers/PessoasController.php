@@ -28,6 +28,16 @@ class PessoasController extends Controller
         ]);
     }
 
+    public function busca(Request $request)
+    {
+        $pessoas = Pessoa::busca($request->criterio);
+
+        return view('pessoas.index', [
+            'pessoas' => $pessoas,
+            'criterio' => $request->criterio
+        ]);
+    }
+
     public function novoView()
     {
         return view('pessoas.create');
@@ -39,8 +49,8 @@ class PessoasController extends Controller
 
         if ($validacao->fails()) {
             return redirect()->back()
-                    ->withErrors($validacao->errors())
-                    ->withInput($request->all());
+                ->withErrors($validacao->errors())
+                ->withInput($request->all());
         }
 
         $pessoa = Pessoa::create($request->all());
@@ -72,7 +82,7 @@ class PessoasController extends Controller
     public function editarView($id)
     {
         return view('pessoas.edit', [
-           'pessoa' => $this->getPessoa($id)
+            'pessoa' => $this->getPessoa($id)
         ]);
     }
 
@@ -82,8 +92,8 @@ class PessoasController extends Controller
 
         if ($validacao->fails()) {
             return redirect()->back()
-                    ->withErrors($validacao->errors())
-                    ->withInput($request->all());
+                ->withErrors($validacao->errors())
+                ->withInput($request->all());
         }
 
         $pessoa = $this->getPessoa($request->id);
